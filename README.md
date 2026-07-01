@@ -68,11 +68,13 @@ npm run dev
 - **LLM Safety and Hallucinations**: Designing prompts and a fallback mechanism to ensure the LLM never regurgitates sensitive information, and accurately falls back to structured keyword search if an API key is missing.
 - **Strict Parsing Limitations**: Tuning Regex boundaries and Luhn algorithms to ensure synthetic or anomalous edge cases (e.g., Aadhaar formats) were properly captured and validated.
 
+## Working prototype deployment Link (MANDATORY)
+
+**Link:** [https://sensitive-data-detection-system.vercel.app/](https://sensitive-data-detection-system.vercel.app/)
+
 ## Future improvements 
 
 - **Persistent Database**: Transition from in-memory session tracking (`SESSION_STORE`) to a persistent database like PostgreSQL or Redis for distributed, long-term session management.
 - **Advanced OCR**: Integrate Tesseract or AWS Textract to support scanned PDFs and images, rather than relying solely on parseable text.
 - **Local LLMs**: Incorporate support for local, open-weights models (via `Ollama`) to entirely eliminate the need for cloud-based LLM APIs, ensuring 100% air-gapped data compliance.
 - **Role-Based Access Control (RBAC)**: Add user authentication and authorization so different compliance officers can have different access tiers to audit logs.
-
-
