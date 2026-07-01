@@ -109,35 +109,10 @@ class QAEngine:
         if self._embeddings_ready or not self.chunks:
             return
         
-        try:
-            import chromadb
-            
-            client = chromadb.Client()
-            
-            # Create or get collection
-            self._collection = client.get_or_create_collection(
-                name="document_chunks",
-                metadata={"hnsw:space": "cosine"},
-            )
-            
-            # Add chunks to collection
-            documents = [chunk.text for chunk in self.chunks]
-            ids = [f"chunk_{chunk.chunk_id}" for chunk in self.chunks]
-            metadatas = [
-                {"start_line": chunk.start_line, "end_line": chunk.end_line}
-                for chunk in self.chunks
-            ]
-            
-            self._collection.add(
-                documents=documents,
-                ids=ids,
-                metadatas=metadatas,
-            )
-            
-            self._embeddings_ready = True
-            
-        except Exception as e:
-            print(f"Warning: ChromaDB embedding failed: {e}")
+        # Bypass ChromaDB for memory-constrained cloud environments (e.g., Render Free Tier)
+        # This prevents loading a 200MB ONNX embedding model into RAM.
+        # The engine will automatically fall back to _keyword_search which is highly efficient.
+        return
     
     def answer(self, question: str) -> str:
         """Answer a natural-language question about the document.
