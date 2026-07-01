@@ -2,7 +2,7 @@
 
 An AI-powered document analysis tool designed to detect sensitive data, classify risk, and generate compliance guidance. Built with a decoupled architecture using **Next.js**, **FastAPI**, **spaCy**, **ChromaDB**, and **Groq LLM**.
 
-## Architecture Overview (MANDATORY)
+## Architecture Overview 
 
 The application follows a modern decoupled architecture:
 
@@ -15,7 +15,7 @@ The application follows a modern decoupled architecture:
   - Risk Classification Algorithm
   - RAG Engine (ChromaDB Vector Store + Groq LLM) for summarization and answering questions about the redacted data without leaking PII to external servers.
 
-## AI/ML approach used (MANDATORY)
+## AI/ML approach used
 
 The system employs a hybrid AI/ML approach to maximize accuracy and data privacy:
 
@@ -24,8 +24,7 @@ The system employs a hybrid AI/ML approach to maximize accuracy and data privacy
 3. **Retrieval-Augmented Generation (RAG)**: The masked document is chunked and embedded into a local **ChromaDB** vector database. 
 4. **Large Language Models (LLMs)**: We integrate with **Groq** (via `llama-3.3-70b-versatile` or similar models) to perform high-speed, context-aware reasoning. The RAG engine retrieves relevant masked document chunks and passes them to the LLM to generate compliance summaries and answer user queries safely.
 
-## Setup instructions (MANDATORY)
-
+## Setup instructions 
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/navvv29/Sensitive_Data_Detection_System.git
@@ -39,7 +38,7 @@ GROQ_API_KEY=your_groq_api_key_here
 LLM_PROVIDER=groq
 ```
 
-### 3. Running with Docker Compose (Recommended)
+### 3. Running with Docker Compose
 ```bash
 docker-compose up --build
 ```
@@ -62,20 +61,18 @@ npm install
 npm run dev
 ```
 
-## Challenges faced (MANDATORY)
+## Challenges faced 
 
 - **Architecture Migration**: Transitioning from a tightly coupled Streamlit monolith to a decoupled Next.js + FastAPI architecture required careful management of stateless backend sessions to keep the RAG conversational memory intact across API requests.
 - **Dependency Conflicts**: Handling exact Python dependency versions across different platforms (Windows/Linux) and managing `uvicorn` executable paths within virtual environments.
 - **LLM Safety and Hallucinations**: Designing prompts and a fallback mechanism to ensure the LLM never regurgitates sensitive information, and accurately falls back to structured keyword search if an API key is missing.
 - **Strict Parsing Limitations**: Tuning Regex boundaries and Luhn algorithms to ensure synthetic or anomalous edge cases (e.g., Aadhaar formats) were properly captured and validated.
 
-## Future improvements (MANDATORY)
+## Future improvements 
 
 - **Persistent Database**: Transition from in-memory session tracking (`SESSION_STORE`) to a persistent database like PostgreSQL or Redis for distributed, long-term session management.
 - **Advanced OCR**: Integrate Tesseract or AWS Textract to support scanned PDFs and images, rather than relying solely on parseable text.
 - **Local LLMs**: Incorporate support for local, open-weights models (via `Ollama`) to entirely eliminate the need for cloud-based LLM APIs, ensuring 100% air-gapped data compliance.
 - **Role-Based Access Control (RBAC)**: Add user authentication and authorization so different compliance officers can have different access tiers to audit logs.
 
-## Working prototype deployment Link (MANDATORY)
 
-**Link:** *[Pending Cloud Deployment - Currently optimized for Local/Docker execution]*
