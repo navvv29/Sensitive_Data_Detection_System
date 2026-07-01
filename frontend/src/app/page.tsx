@@ -30,7 +30,8 @@ export default function Home() {
     formData.append('llm_provider', 'groq');
 
     try {
-      const res = await fetch('http://localhost:8000/api/upload', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/api/upload`, {
         method: 'POST',
         body: formData,
       });
