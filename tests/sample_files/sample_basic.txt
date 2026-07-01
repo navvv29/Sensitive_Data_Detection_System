@@ -1,0 +1,14 @@
+This is a sample text file for testing the extraction pipeline.
+
+It contains multiple lines of text with various content.
+
+Contact Information:
+Name: John Doe
+Email: john.doe@example.com
+Phone: +91 9876543210
+
+This file tests basic UTF-8 text extraction.
+Line 10 of the document.
+Line 11 — with special characters: café, résumé, naïve.
+
+End of test document.

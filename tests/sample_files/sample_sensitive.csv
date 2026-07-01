@@ -1,0 +1,5 @@
+name,email,aadhaar,pan,credit_card,phone
+Rajesh Kumar,rajesh@test.com,2345 6789 0123,ABCPK1234F,4111111111111111,+919876543210
+Priya Sharma,priya@test.com,9876 5432 1098,DEFPS5678G,5500000000000004,9123456780
+,,,,, 
+Amit Patel,amit@test.com,1111 2222 3333,GHIPA9012H,,8765432109

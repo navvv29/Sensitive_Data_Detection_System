@@ -1,0 +1,6 @@
+name,email,phone,employee_id,department
+Alice Johnson,alice.johnson@testcorp.com,+91-9876543210,EMP001,Engineering
+Bob Smith,bob.smith@testcorp.com,9123456789,EMP002,Marketing
+Charlie Brown,charlie.b@example.org,+1-555-123-4567,EMP003,Finance
+Diana Prince,diana.prince@testcorp.com,,EMP004,HR
+Eve Wilson,,8765432109,EMP005,Engineering

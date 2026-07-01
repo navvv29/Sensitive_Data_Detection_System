@@ -1,0 +1,44 @@
+CONFIDENTIAL - INTERNAL USE ONLY
+
+Employee Performance Report Q3 2024
+Company: TestCorp Industries Pvt. Ltd.
+
+This document contains sensitive employee information and should not be shared
+outside the Human Resources department.
+
+Employee Details:
+=================
+
+Name: Rajesh Kumar
+Employee ID: EMP-2024-0891
+Aadhaar Number: 2345 6789 0123
+PAN: ABCPK1234F
+Email: rajesh.kumar@testcorp.in
+Phone: +91 98765 43210
+Bank Account: 1234567890123456
+IFSC Code: SBIN0001234
+
+Name: Priya Sharma  
+Employee ID: EMP-2024-0456
+Email: priya.sharma@testcorp.in
+Phone: 9123456780
+
+Salary Details (STRICTLY CONFIDENTIAL):
+Monthly CTC: INR 15,00,000
+Bonus: INR 3,00,000
+
+API Configuration (DO NOT SHARE):
+Database Password: db_password=SuperSecret123!
+API Key: sk-test1234567890abcdef
+AWS Access Key: AKIAIOSFODNN7EXAMPLE
+GitHub Token: ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdef12
+
+Credit Card on File: 4111-1111-1111-1111
+Expiry: 12/2027
+
+Trade Secret: The new product "ProjectX" launch is planned for Q1 2025
+with an estimated market capture of 23% in the first year.
+
+NDA Reference: NDA-2024-TC-0089 executed on 15-Mar-2024.
+
+END OF CONFIDENTIAL DOCUMENT
