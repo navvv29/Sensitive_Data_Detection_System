@@ -21,8 +21,8 @@ RUN python -m spacy download en_core_web_sm
 # Copy the application code
 COPY . .
 
-# Expose Streamlit default port
-EXPOSE 8501
+# Expose FastAPI default port
+EXPOSE 8000
 
 # Run the application
-CMD ["streamlit", "run", "app/main.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]

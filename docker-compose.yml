@@ -1,17 +1,25 @@
 version: '3.8'
 
 services:
-  app:
+  backend:
     build: .
-    container_name: sensitive_data_assistant
+    container_name: sensitive_data_backend
     ports:
-      - "8501:8501"
+      - "8000:8000"
     volumes:
       - .:/app
-      - /app/.venv
     environment:
-      - STREAMLIT_SERVER_PORT=8501
-      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
       # Pass API keys via environment variables or a .env file
     env_file:
       - .env
+
+  frontend:
+    build: 
+      context: ./frontend
+    container_name: sensitive_data_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - backend

@@ -1,4 +1,9 @@
-# Core UI
+# Web Framework (FastAPI)
+fastapi>=0.109.0
+uvicorn>=0.27.0
+python-multipart>=0.0.9
+
+# Core UI (Deprecated, keeping for legacy compatibility if needed)
 streamlit>=1.35.0
 
 # Document extraction
@@ -10,10 +15,9 @@ pdf2image>=1.17.0
 # NLP / Detection
 spacy>=3.7.0
 
-# LLM Clients
-google-genai>=0.2.0
-openai>=1.12.0
-groq>=1.0.0
+# LLM Integrations
+groq>=0.13.0
+openai>=1.14.0
 
 # RAG / Embeddings
 chromadb>=0.5.0

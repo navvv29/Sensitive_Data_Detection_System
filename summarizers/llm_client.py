@@ -1,12 +1,12 @@
 """
 LLM Client — Abstracted Language Model Interface
 ==================================================
-Provides a unified interface to LLM providers (Gemini default, OpenAI alternative).
+Provides a unified interface to LLM providers (Groq default, OpenAI alternative).
 The provider is configurable via environment variables, making it swappable
 without changing downstream code.
 
 Provider selection:
-- Set LLM_PROVIDER=gemini (default) and GEMINI_API_KEY
+- Set LLM_PROVIDER=groq (default) and GROQ_API_KEY
 - Set LLM_PROVIDER=openai and OPENAI_API_KEY (alternative)
 
 All LLM calls go through the `generate()` function which handles:
@@ -36,10 +36,10 @@ class LLMClient:
         """Initialize the LLM client.
         
         Args:
-            provider: LLM provider ('gemini' or 'openai'). Defaults to env var.
+            provider: LLM provider ('groq' or 'openai'). Defaults to env var.
             api_key: API key. Defaults to env var.
         """
-        self.provider = provider or os.environ.get("LLM_PROVIDER", "gemini")
+        self.provider = provider or os.environ.get("LLM_PROVIDER", "groq")
         self.api_key = api_key
         self.model_name = None
         self._client = None
@@ -48,29 +48,13 @@ class LLMClient:
     
     def _initialize_client(self):
         """Initialize the provider-specific client."""
-        if self.provider == "gemini":
-            self._init_gemini()
+        if self.provider == "groq":
+            self._init_groq()
         elif self.provider == "openai":
             self._init_openai()
-        elif self.provider == "groq":
-            self._init_groq()
         else:
             raise ValueError(f"Unsupported LLM provider: {self.provider}")
     
-    def _init_gemini(self):
-        """Initialize Google Gemini client."""
-        api_key = self.api_key or os.environ.get("GEMINI_API_KEY")
-        if not api_key:
-            raise ValueError(
-                "GEMINI_API_KEY not found. Set it in .env or pass directly."
-            )
-        
-        try:
-            from google import genai
-            self._client = genai.Client(api_key=api_key)
-            self.model_name = "gemini-2.0-flash"
-        except ImportError:
-            raise ImportError("google-genai package not installed. Run: pip install google-genai")
     
     def _init_openai(self):
         """Initialize OpenAI client."""
@@ -127,12 +111,10 @@ class LLMClient:
         
         for attempt in range(max_retries + 1):
             try:
-                if self.provider == "gemini":
-                    return self._generate_gemini(prompt, system_instruction, temperature)
+                if self.provider == "groq":
+                    return self._generate_groq(prompt, system_instruction, temperature)
                 elif self.provider == "openai":
                     return self._generate_openai(prompt, system_instruction, temperature)
-                elif self.provider == "groq":
-                    return self._generate_groq(prompt, system_instruction, temperature)
             except Exception as e:
                 last_error = e
                 if attempt < max_retries:
@@ -147,27 +129,6 @@ class LLMClient:
             f"Please check your API key configuration and try again."
         )
     
-    def _generate_gemini(
-        self, prompt: str, system_instruction: Optional[str], temperature: float
-    ) -> str:
-        """Generate response using Google Gemini."""
-        from google.genai import types
-        
-        config = types.GenerateContentConfig(
-            temperature=temperature,
-            max_output_tokens=2048,
-        )
-        
-        if system_instruction:
-            config.system_instruction = system_instruction
-        
-        response = self._client.models.generate_content(
-            model=self.model_name,
-            contents=prompt,
-            config=config,
-        )
-        
-        return response.text
     
     def _generate_openai(
         self, prompt: str, system_instruction: Optional[str], temperature: float
